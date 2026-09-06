@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Language Learner</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Local Language Learner</h1>
+    <nav>
+      <button id="nav-quiz" class="nav-btn active">Quiz</button>
+      <button id="nav-manage" class="nav-btn">Manage</button>
+    </nav>
+  </header>
+
+  <main id="quiz-view" class="view">
+    <div id="quiz-empty" class="hidden">
+      <p id="quiz-empty-msg">Nothing due right now.</p>
+      <button id="review-ahead-btn">Review ahead anyway</button>
+    </div>
+    <div id="quiz-card" class="hidden">
+      <div class="quiz-meta">
+        <span id="quiz-deck-name"></span>
+        <span id="quiz-progress"></span>
+      </div>
+      <div id="quiz-prompt" class="prompt"></div>
+      <form id="quiz-form">
+        <input id="quiz-answer" type="text" autocomplete="off" placeholder="Type your answer..." />
+        <button type="submit">Check</button>
+      </form>
+      <div id="quiz-feedback" class="feedback hidden"></div>
+      <button id="quiz-next-btn" class="hidden">Next</button>
+    </div>
+    <div id="quiz-no-decks" class="hidden">
+      <p>No decks yet. Go to Manage to create one and add words.</p>
+    </div>
+  </main>
+
+  <main id="manage-view" class="view hidden">
+    <section>
+      <h2>Decks</h2>
+      <div id="deck-list"></div>
+      <details>
+        <summary>Add new deck</summary>
+        <form id="deck-form">
+          <input id="deck-name" type="text" placeholder="Deck name (e.g. Finnish)" required />
+          <input id="deck-from" type="text" placeholder="From language code (e.g. en)" required maxlength="10" />
+          <input id="deck-to" type="text" placeholder="To language code (e.g. fi)" required maxlength="10" />
+          <button type="submit">Create deck</button>
+        </form>
+      </details>
+    </section>
+
+    <section>
+      <h2>Add word</h2>
+      <form id="word-form">
+        <label>Deck
+          <select id="word-deck-select"></select>
+        </label>
+        <input id="word-front" type="text" placeholder="Front" required />
+        <input id="word-back" type="text" placeholder="Back" required />
+        <button type="submit">Add word</button>
+      </form>
+      <p id="word-form-msg" class="msg hidden"></p>
+    </section>
+
+    <section>
+      <h2>Settings</h2>
+      <label>Quiz direction
+        <select id="direction-select">
+          <option value="front-back">Front → Back</option>
+          <option value="back-front">Back → Front</option>
+          <option value="mixed">Mixed</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Word list</h2>
+      <div id="word-list"></div>
+    </section>
+
+    <section>
+      <h2>Import / Export</h2>
+      <button id="export-btn">Export JSON</button>
+      <input id="import-file" type="file" accept="application/json" class="hidden" />
+      <button id="import-btn">Import JSON</button>
+      <p id="import-msg" class="msg hidden"></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
